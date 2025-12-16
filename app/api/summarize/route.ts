@@ -5,19 +5,13 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     if (!body?.text) {
-      return NextResponse.json(
-        { error: "Text is required" },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Text is required" }, { status: 400 });
     }
 
     return NextResponse.json({
       summary: `Summary: ${body.text}`,
     });
-  } catch {
-    return NextResponse.json(
-      { error: "Invalid request" },
-      { status: 500 }
-    );
+  } catch (e) {
+    return NextResponse.json({ error: "Invalid request" }, { status: 500 });
   }
 }
